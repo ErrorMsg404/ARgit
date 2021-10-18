@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+
+    <body style="margin:0px; overflow:hidden;">
+
+            <a-scene embedded arjs="debugUIEnabled:false; detectionMode:mono_and_matrix; matrixCodeType:4x4_BCH_13_9_3;" vr-mode-ui="enabled:false">
+
+            <a-assets>
+                <img id="station_01" src="assets/images/station_01.jpg">
+                <img id="station_02" src="assets/images/station_02.jpg">
+                <img id="station_03" src="assets/images/station_03.jpg">
+            </a-assets>
+
+            <a-marker-camera type="barcode" value="1">
+                <a-image src="#station_01" scale="2 3 1" rotation="-90 0 0"></a-image>
+            </a-marker-camera>
+
+            <a-marker-camera type="barcode" value="2">
+                <a-image src="#station_02" scale="2 3 1" rotation="-90 0 0"></a-image>
+            </a-marker-camera>
+
+            <a-marker-camera type="barcode" value="3">
+                <a-image src="#station_03" scale="2 3 1" rotation="-90 0 0"></a-image>
+            </a-marker-camera>
+
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
