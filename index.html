@@ -1,35 +1,33 @@
-<!DOCTYPE html>
+<!doctype HTML>
 <html>
     <head>
-
-
-        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     </head>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
-    <body style="margin:0px; overflow:hidden;">
+    <body style='margin : 0px; overflow: hidden;'>
+        <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+        <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
-            <a-scene embedded arjs="debugUIEnabled:false; detectionMode:mono_and_matrix; matrixCodeType:4x4_BCH_13_9_3;" vr-mode-ui="enabled:false">
+        <a-assets>
+            <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
+        </a-assets>
 
-            <a-assets>
-                <img id="station_01" src="assets/images/station_01.jpg">
-                <img id="station_02" src="assets/images/station_02.jpg">
-                <img id="station_03" src="assets/images/station_03.jpg">
-            </a-assets>
+        <a-marker type='barcode' value='7'>
+            <a-box position='0 0.5 0' color="yellow"></a-box>
+        </a-marker>
 
-            <a-marker-camera type="barcode" value="1">
-                <a-image src="#station_01" scale="2 3 1" rotation="-90 0 0"></a-image>
-            </a-marker-camera>
+        <a-marker id="animated-marker" type='barcode' value='6'>
+            <a-entity
+                gltf-model="#animated-asset"
+                scale="2">
+            </a-entity>
+        </a-marker>
 
-            <a-marker-camera type="barcode" value="2">
-                <a-image src="#station_02" scale="2 3 1" rotation="-90 0 0"></a-image>
-            </a-marker-camera>
-
-            <a-marker-camera type="barcode" value="3">
-                <a-image src="#station_03" scale="2 3 1" rotation="-90 0 0"></a-image>
-            </a-marker-camera>
-
-            <a-entity camera></a-entity>
+        <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
+        <a-entity camera></a-entity>
         </a-scene>
     </body>
 </html>
